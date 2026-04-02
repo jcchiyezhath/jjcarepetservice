@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | JJ Care Pet Service</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="contact">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <img src="Logo.png" alt="JJ Care Pet Service Logo" />
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="pet-guide.html">Pet Guide</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p class="section-intro">
+          Reach out for questions, meet and greets, availability, or booking details.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <h2>Business Details</h2>
+          <div class="contact-info">
+            <div>
+              <strong>Business</strong>
+              <span id="contactBusinessName">JJ Care Pet Service</span>
+            </div>
+            <div>
+              <strong>Location</strong>
+              <span id="contactLocation">Saint Cloud, FL</span>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:jjcarepetservice@gmail.com" id="contactEmail">jjcarepetservice@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h2>Booking</h2>
+          <p id="contactBookingText">For bookings, please use our Rover profile.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" id="contactRoverButton" href="https://www.rover.com/sit/jani66614" target="_blank" rel="noopener">Book on Rover</a>
+            <a class="btn btn-secondary" href="mailto:jjcarepetservice@gmail.com">Email Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Send Us a Message</h2>
+
+        <form id="contactForm" class="contact-form">
+          <label for="name">Full Name *</label>
+          <input id="name" type="text" name="name" placeholder="Your name" required />
+
+          <label for="email">Email *</label>
+          <input id="email" type="email" name="email" placeholder="Your email" required />
+
+          <label for="phone">Phone (optional)</label>
+          <input id="phone" type="tel" name="phone" placeholder="Your phone number" />
+
+          <label for="message">Let me know how we can help you? *</label>
+          <textarea id="message" name="message" placeholder="Type your message..." required></textarea>
+
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+
+        <p id="form-status" class="section-intro" style="display:none; margin-top:16px;"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <h3 id="footer-business-name">JJ Care Pet Service</h3>
+        <p>Safe, loving pet care with a personal touch.</p>
+      </div>
+
+      <div>
+        <h4>Pages</h4>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="pet-guide.html">Pet Guide</a></p>
+        <p><a href="contact.html">Contact</a></p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p id="footer-location">Saint Cloud, FL</p>
+        <p><a id="footer-email" href="mailto:jjcarepetservice@gmail.com">jjcarepetservice@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

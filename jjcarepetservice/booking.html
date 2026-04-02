@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking | JJ Care Pet Service</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="booking">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <img src="Logo.png" alt="JJ Care Pet Service Logo" />
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="pet-guide.html">Pet Guide</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Booking Request</h1>
+        <p class="section-intro">
+          Tell us a little about your pet care needs and we&rsquo;ll follow up shortly.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <form id="booking-form" class="contact-form">
+          <input type="hidden" name="action" value="booking" />
+
+          <label for="name">Full Name <span class="required">*</span></label>
+          <input id="name" type="text" name="name" placeholder="Your full name" required />
+
+          <label for="email">Email <span class="required">*</span></label>
+          <input id="email" type="email" name="email" placeholder="Your email" required />
+
+          <label for="phone">Phone Number <span class="required">*</span></label>
+          <input id="phone" type="text" name="phone" placeholder="Your phone number" required />
+
+          <label for="pet">Pet Name <span class="required">*</span></label>
+          <input id="pet" type="text" name="pet" placeholder="Your pet's name" required />
+
+          <label for="type">Pet Type <span class="required">*</span></label>
+          <select id="type" name="type" required>
+            <option value="">Select pet type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="service">Service Needed <span class="required">*</span></label>
+          <select id="service" name="service" required>
+            <option value="">Select service</option>
+            <option value="Dog Sitting">Dog Sitting</option>
+            <option value="Drop-In Visits">Drop-In Visits</option>
+            <option value="Dog Walking">Dog Walking</option>
+          </select>
+
+          <label for="start">Start Date <span class="required">*</span></label>
+          <input id="start" type="date" name="start" required />
+
+          <label for="end">End Date <span class="required">*</span></label>
+          <input id="end" type="date" name="end" required />
+
+          <label for="notes">Special Instructions</label>
+          <textarea id="notes" name="notes" placeholder="Anything we should know about your pet?"></textarea>
+
+          <button type="submit" class="btn btn-primary">Submit Request</button>
+
+          <p id="success-message" class="section-intro" style="display:none; margin-top:16px;">
+            Request submitted! We&rsquo;ll contact you shortly.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <h3 id="footer-business-name">JJ Care Pet Service</h3>
+        <p>Safe, loving pet care with a personal touch.</p>
+      </div>
+
+      <div>
+        <h4>Pages</h4>
+        <p><a href="index.html">Home</a></p>
+        <p><a href="pet-guide.html">Pet Guide</a></p>
+        <p><a href="contact.html">Contact</a></p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p id="footer-location">Saint Cloud, FL</p>
+        <p><a id="footer-email" href="mailto:jjcarepetservice@gmail.com">jjcarepetservice@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
