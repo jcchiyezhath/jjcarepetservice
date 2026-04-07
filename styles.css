@@ -175,6 +175,39 @@ a {
   margin-bottom: 28px;
 }
 
+.portal-promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #edf9f7, #f8fbff);
+  box-shadow: var(--shadow);
+}
+
+.portal-promo h2 {
+  margin: 0 0 12px;
+}
+
+.portal-promo-copy {
+  margin-bottom: 0;
+}
+
+.portal-promo-kicker {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #e6fffb;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 .hero-details {
   display: grid;
   gap: 14px;
@@ -445,6 +478,11 @@ textarea {
   .footer-grid,
   .testimonial-grid {
     grid-template-columns: 1fr;
+  }
+
+  .portal-promo {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .card-grid,
