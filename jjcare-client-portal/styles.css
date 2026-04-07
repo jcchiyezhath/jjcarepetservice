@@ -39,10 +39,61 @@ body {
   margin-bottom: 0.9rem;
 }
 
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
 .site-header h1 {
   margin: 0;
   font-size: 1.6rem;
   letter-spacing: -0.02em;
+}
+
+.mobile-menu-button {
+  display: none;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 1px solid #ead4d7;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #7d4b52;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.28rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+  background: #fdf2f4;
+  border-color: #e8c6ca;
+  transform: translateY(-1px);
+}
+
+.mobile-menu-button span {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.mobile-menu-button.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-menu-button.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-button.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 .site-nav {
@@ -69,6 +120,26 @@ body {
 .site-nav a.active {
   background: var(--primary-color);
   color: #ffffff;
+}
+
+.site-nav-logout {
+  display: none;
+  width: 100%;
+  border: 1px solid #ead4d7;
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  background: #ffffff;
+  color: #7d4b52;
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-nav-logout:hover {
+  background: #fdf2f4;
+  border-color: #e8c6ca;
 }
 
 .panel {
@@ -304,6 +375,27 @@ body {
   text-align: center;
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+.auth-browser-warning {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid #f1d2c0;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fff8f2 0%, #fff2ea 100%);
+  color: #7c4a3b;
+}
+
+.auth-browser-warning strong {
+  font-size: 0.95rem;
+}
+
+.auth-browser-warning p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.92rem;
 }
 
 .auth-inline-link {
@@ -1129,37 +1221,75 @@ body.portal-client-mode .chat-mode-badge {
 }
 
 @media (max-width: 640px) {
+  .container {
+    width: min(1120px, calc(100% - 1rem));
+  }
+
+  .site-header {
+    padding: 0.75rem 0 0.8rem;
+  }
+
   .site-header h1 {
-    font-size: 1.3rem;
+    font-size: 1.02rem;
+    line-height: 1.2;
   }
 
   .site-header-top {
-    flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .site-header-actions {
+    gap: 0.55rem;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+  }
+
+  #logout-button {
+    display: none;
   }
 
   .site-nav {
-    gap: 0.5rem;
+    display: none;
+    margin-top: 0.75rem;
+    padding: 0.8rem;
+    gap: 0.55rem;
+    border: 1px solid rgba(232, 198, 202, 0.95);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  }
+
+  .site-nav.is-open {
+    display: grid;
   }
 
   .site-nav a {
     width: 100%;
-    text-align: center;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+  }
+
+  .site-nav-logout {
+    display: block;
   }
 
   .panel {
-    margin: 1.25rem 0 1.75rem;
-    padding: 1.1rem;
+    margin: 0.85rem 0 1.25rem;
+    padding: 1rem;
     border-radius: 20px;
   }
 
   .auth-shell {
     min-height: auto;
-    padding-block: 1.25rem 2rem;
+    padding-block: 0.85rem 1.75rem;
   }
 
   .auth-card {
-    padding: 1.35rem;
+    padding: 1.2rem;
     border-radius: 24px;
   }
 
@@ -1170,6 +1300,7 @@ body.portal-client-mode .chat-mode-badge {
   .portal-heading,
   .portal-heading--compact {
     display: block;
+    margin-bottom: 0.85rem;
   }
 
   .portal-grid {
@@ -1214,6 +1345,7 @@ body.portal-client-mode .chat-mode-badge {
   .client-summary-card,
   .summary-strip {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .card-topline {
@@ -1223,6 +1355,7 @@ body.portal-client-mode .chat-mode-badge {
 
   .hero-strip {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .client-sidebar {

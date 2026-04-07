@@ -919,11 +919,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const googleSignInButton = document.querySelector("#googleSignInButton");
   const loginStatus = document.querySelector("#auth-status");
-  const logoutButton = document.querySelector("#logout-button");
+  const logoutButtons = document.querySelectorAll("#logout-button, #mobile-logout-button");
+  const mobileMenuButton = document.querySelector("#mobile-menu-button");
+  const siteNav = document.querySelector("#site-nav");
+  const siteHeader = document.querySelector(".site-header");
   const messagesNavLink = document.querySelector('.site-nav a[href="messages.html"]');
   const loginNavItems = document.querySelectorAll("[data-nav-login]");
   const protectedNavItems = document.querySelectorAll("[data-nav-protected]");
   const authFootnote = document.querySelector("#auth-footnote");
+  const inAppBrowserWarning = document.querySelector("#in-app-browser-warning");
   const pageRoleLabels = document.querySelectorAll("#page-role-label");
   const chatThread = document.querySelector("#chat-thread");
   const chatForm = document.querySelector("#chat-form");
@@ -950,6 +954,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
+  const isMobileViewport = () => window.matchMedia("(max-width: 640px)").matches;
+
+  const closeMobileMenu = () => {
+    if (!mobileMenuButton || !siteNav) {
+      return;
+    }
+
+    mobileMenuButton.classList.remove("is-open");
+    mobileMenuButton.setAttribute("aria-expanded", "false");
+    siteNav.classList.remove("is-open");
+  };
+
+  const isInAppBrowser = () => {
+    const userAgent = navigator.userAgent || "";
+    return /Instagram|FBAN|FBAV|FB_IAB|Messenger|WhatsApp/i.test(userAgent);
+  };
+
   const updateNavigationVisibility = (isAuthenticated) => {
     loginNavItems.forEach((item) => {
       item.hidden = isAuthenticated;
@@ -958,9 +979,66 @@ document.addEventListener("DOMContentLoaded", async () => {
     protectedNavItems.forEach((item) => {
       item.hidden = !isAuthenticated;
     });
+
+    closeMobileMenu();
   };
 
   updateNavigationVisibility(Boolean(storedSession?.email));
+
+  if (mobileMenuButton && siteNav) {
+    mobileMenuButton.addEventListener("click", () => {
+      const isExpanded = mobileMenuButton.getAttribute("aria-expanded") === "true";
+
+      if (isExpanded) {
+        closeMobileMenu();
+        return;
+      }
+
+      mobileMenuButton.classList.add("is-open");
+      mobileMenuButton.setAttribute("aria-expanded", "true");
+      siteNav.classList.add("is-open");
+    });
+
+    siteNav.querySelectorAll("a, button").forEach((item) => {
+      item.addEventListener("click", () => {
+        closeMobileMenu();
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!isMobileViewport()) {
+        return;
+      }
+
+      const target = event.target;
+
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      if (siteHeader?.contains(target)) {
+        return;
+      }
+
+      closeMobileMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMobileMenu();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (!isMobileViewport()) {
+        closeMobileMenu();
+      }
+    });
+  }
+
+  if (inAppBrowserWarning && currentPage === "index.html") {
+    inAppBrowserWarning.hidden = !isInAppBrowser();
+  }
 
   if (googleSignInButton && currentPage === "index.html") {
     googleSignInButton.addEventListener("click", () => {
@@ -2105,11 +2183,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     setAuthStatus("Firebase could not be initialized. Please check your project settings.");
   }
 
-  if (logoutButton) {
-    logoutButton.addEventListener("click", () => {
+  logoutButtons.forEach((button) => {
+    button.addEventListener("click", () => {
       window.logoutUser();
     });
-  }
+  });
 
   if (chatThread && chatForm) {
     const chatInput = document.querySelector("#chat-input");
